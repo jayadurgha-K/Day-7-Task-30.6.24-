@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAY-7-TASK</title>
+</head>
+<body>
+    <script>
+
+// Day-7-Task-a
+// Get all the countries from asia continent/region using filter function
+
+const request= new XMLHttpRequest();
+request.open ("GET","https://restcountries.com/v3.1/all",true)
+request.send();
+request.onload=function(){
+    var data = request.response;
+    var result = JSON.parse(data);
+    //console.log(result);
+    var country=result.filter((ele)=>ele.region==="Asia");
+    //console.log(country);
+    var final=country.map((ele)=>ele.name.common);
+    console.log(final);
+}
+
+
+// Day-7-Task-b
+//Get all the countries with a population of less than 2 lakhs using filter function
+
+const request1=new XMLHttpRequest();
+request1.open("GET","https://restcountries.com/v3.1/all",true)
+request1.send();
+request1.onload=function(){
+    var data1=request1.response;
+    var result1=JSON.parse(data1);
+    //console.log(result1);
+    var count=result1.filter((ele)=>ele.population<="200000");
+    //console.log(count);
+    var final1=count.map((ele)=>ele.name.common);
+
+console.log(final1);
+
+}
+
+
+//Day-7-Task-c
+// Print the following details name,capital,flag using forEach function
+
+const request2=new XMLHttpRequest();
+request2.open("GET","https://restcountries.com/v3.1/all",true)
+request2.send();
+request2.onload=function(){
+    var data2=request2.response;
+   // console.log(data2);
+   var result2=JSON.parse(data2);
+   //console.log(result2);
+   var final2=result2.forEach ((ele)=> console.log(ele.name.common,ele.capital,ele.flags.svg))
+
+}
+
+
+// Day-7-Task-d
+//Print the total population of countries using reduce function
+
+const request3=new XMLHttpRequest();
+request3.open("GET","https://restcountries.com/v3.1/all",true)
+request3.send();
+request3.onload=function(){
+    var data3= request3.response;
+    //console.log(data3);
+    var result3=JSON.parse(data3);
+    //console.log(result3);
+    var count1=result3.map((ele)=>ele.population)
+    //console.log(count1);
+    var final3=count1.reduce((sum,i)=>{
+       return sum+i
+ },0)
+    console.log(final3);
+
+}
+
+
+// Day-7-Task-e
+// Print the country that uses US dollars as currency
+
+const request4=new XMLHttpRequest();
+request4.open("GET","https://restcountries.com/v3.1/all",true)
+request4.send();
+request4.onload=function(){
+    var data4= request4.response;
+   // console.log(data4);
+    var result4= JSON.parse(data4);
+   // console.log(result4);
+    var count2 = result4.filter((ele)=>ele.currencies  &&   ele.currencies.USD);
+    //console.log(count2);
+    var final4 = count2.map((ele)=>ele.name.common);
+    console.log(final4);
+
+}
+    </script>
+</body>
+</html>
